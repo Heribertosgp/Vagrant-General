@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip:"127.0.0.1"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -64,8 +64,25 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
+   config.vm.provision "shell", inline: <<-SHELL
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
-  # SHELL
+      echo "Instaling basic setup"
+      yum install epel-release -y > /dev/null
+      yum update -y > /dev/null
+      echo "Instaling utilities"
+      yum install puppet -y > /dev/null
+      yum install nginx -y > /dev/null
+      yum install haproxy -y > /dev/null
+      yum install php -y > /dev/null
+      yum install curl -y > /dev/null
+      yum install php-fpm -y > /dev/null
+      echo "Instaling DB"     
+      yum install debconf-utils -y > /dev/null
+      yum install mysql -y > /dev/null
+      yum update -y > /dev/null
+      echo "You just installed Puppet, Ngnix, haproxy, php-fpm and MySQL"
+   SHELL
+  #Puppet provisioning
+  #config.vm.provision "puppet" 
 end
