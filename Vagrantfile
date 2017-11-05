@@ -1,17 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
-Vagrant.configure(2) do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
+Vagrant.configure(2) do |config|
+  
   config.vm.box = "centos/7"
 
   # Disable automatic box update checking. If you disable this, then
@@ -69,8 +61,10 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
       echo "Instaling basic setup"
       yum install epel-release -y > /dev/null
+      rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm > /dev/null
       yum update -y > /dev/null
       echo "Instaling utilities"
+      yum install nano -y > /dev/null
       yum install puppet -y > /dev/null
       yum install nginx -y > /dev/null
       yum install haproxy -y > /dev/null
@@ -81,6 +75,9 @@ Vagrant.configure(2) do |config|
       yum install debconf-utils -y > /dev/null
       yum install mysql -y > /dev/null
       yum update -y > /dev/null
+      echo "Restarting Puppet and Nginx"
+      service puppet restart
+      service nginx restart
       echo "You just installed Puppet, Ngnix, haproxy, php-fpm and MySQL"
    SHELL
   #Puppet provisioning
