@@ -63,7 +63,7 @@ Vagrant.configure(2) do |config|
       yum install epel-release -y > /dev/null
       rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm > /dev/null
       yum update -y > /dev/null
-      echo "Instaling utilities"
+      echo "Installing utilities"
       yum install nano -y > /dev/null
       yum install puppet -y > /dev/null
       yum install nginx -y > /dev/null
@@ -71,7 +71,7 @@ Vagrant.configure(2) do |config|
       yum install php -y > /dev/null
       yum install curl -y > /dev/null
       yum install php-fpm -y > /dev/null
-      echo "Instaling DB"     
+      echo "Installing DB"     
       yum install debconf-utils -y > /dev/null
       yum install mysql -y > /dev/null
       yum update -y > /dev/null
