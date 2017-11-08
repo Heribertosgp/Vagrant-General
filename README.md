@@ -1,6 +1,6 @@
 # Vagrant-General
 Vagrant File for General porpouses. It can be used as example for small servers and webapp DevOs.
-INTRODUCTION:
+<h2>INTRODUCTION:</h2>
 The file is based on CentOS7 because I believe is more reliable than Ubuntu. I like the Debian family but the virtualization and the servers are more stronger in RedHat family.
 VAGRANTFILE CONFIGURATION:
 In order to use HAproxy and NGINX I will use a multiple-Machine configuration to distribute the traffic among several machines.
