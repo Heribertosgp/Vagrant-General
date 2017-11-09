@@ -35,7 +35,7 @@ Vagrant.configure(2) do |config|
   end
   
   # Sync folders, "Host ../folder_name", "/Guest_folder_name" -Options
-   config.vm.synced_folder "../manifests", "/vagrant_manifests"
+   config.vm.synced_folder "../manifests", "/vagrant_manifests", create: true
 
   # Provider specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
