@@ -11,31 +11,27 @@ Vagrant.configure(2) do |config|
   
   #Config/Master node 
   config.vm.define "master", primary: true do |master|
-    master.vm.network "forwarded_port", guest: 80, host: 8080, host_ip:"127.0.0.1"
-      auto_correct: true
+    master.vm.network "forwarded_port", guest: 80, host: 8080, host_ip:"127.0.0.1", auto_correct: true 
     #master.vm.provision "shell", inline: "echo Hello"
   end
   
 #Secundary nodes
   config.vm.define "node1" do |node1|
-    node1.vm.network "forwarded_port", guest: 802, host: 8080, host_ip:"127.0.0.2"
-      auto_correct: true
+    node1.vm.network "forwarded_port", guest: 802, host: 8080, host_ip:"127.0.0.2", auto_correct: true
     #node1.vm.provision "shell", inline: "echo Hello"
   end
   
   config.vm.define "node2" do |node2|
-    node2.vm.network "forwarded_port", guest: 803, host: 8080, host_ip:"127.0.0.3"
-      auto_correct: true
+    node2.vm.network "forwarded_port", guest: 803, host: 8080, host_ip:"127.0.0.3", auto_correct: true  
   end
   
   #If more nodes needed start it with $vagrant up <name>
   config.vm.define "node3", autostart: false do |node3|
-    node3.vm.network "forwarded_port", guest: 804, host: 8080, host_ip:"127.0.0.4"
-      auto_correct: true
+    node3.vm.network "forwarded_port", guest: 804, host: 8080, host_ip:"127.0.0.4", auto_correct: true
   end
+  
   config.vm.define "node4", autostart: false do |node4|
-    node4.vm.network "forwarded_port", guest: 805, host: 8080, host_ip:"127.0.0.5"
-      auto_correct: true
+    node4.vm.network "forwarded_port", guest: 805, host: 8080, host_ip:"127.0.0.5", auto_correct: true  
   end
   
   # Sync folders, "Host ../folder_name", "/Guest_folder_name" -Options
