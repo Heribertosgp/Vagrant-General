@@ -4,37 +4,46 @@
 
 Vagrant.configure(2) do |config|
   
+  #Define the box from the Atlas so that ensures that is a "Public box". If you want to use multiple boxes use <name>.vm.box
   config.vm.box = "centos/7"
+  
+  #Define the diferent machines with <name>.vm.define
+  
+  #Config/Master node 
+  config.vm.define "master", primary: true do |master|
+    master.vm.network "forwarded_port", guest: 80, host: 8080, host_ip:"127.0.0.1"
+      auto_correct: true
+    #master.vm.provision "shell", inline: "echo Hello"
+  end
+  
+#Secundary nodes
+  config.vm.define "node1" do |node1|
+    node1.vm.network "forwarded_port", guest: 802, host: 8080, host_ip:"127.0.0.2"
+      auto_correct: true
+    #node1.vm.provision "shell", inline: "echo Hello"
+  end
+  
+  config.vm.define "node2" do |node2|
+    node2.vm.network "forwarded_port", guest: 803, host: 8080, host_ip:"127.0.0.3"
+      auto_correct: true
+  end
+  
+  #If more nodes needed start it with $vagrant up <name>
+  config.vm.define "node3", autostart: false do |node3|
+    node3.vm.network "forwarded_port", guest: 804, host: 8080, host_ip:"127.0.0.4"
+      auto_correct: true
+  end
+  config.vm.define "node4", autostart: false do |node4|
+    node4.vm.network "forwarded_port", guest: 805, host: 8080, host_ip:"127.0.0.5"
+      auto_correct: true
+  end
+  
+  # Sync folders, "Host ../folder_name", "/Guest_folder_name" -Options
+   config.vm.synced_folder "../manifests", "/vagrant_manifests"
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip:"127.0.0.1"
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
-
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network "public_network"
-
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
-  # Provider-specific configuration so you can fine-tune various
+  # Provider specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
+  #Uncoment for "virtualbox":
   # config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
@@ -42,23 +51,10 @@ Vagrant.configure(2) do |config|
   #   # Customize the amount of memory on the VM:
   #   vb.memory = "1024"
   # end
-  #
-  # View the documentation for the provider you are using for more
-  # information on available options.
 
-  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
-  # such as FTP and Heroku are also available. See the documentation at
-  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
-  # config.push.define "atlas" do |push|
-  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
-  # end
-
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
+  # Enable provisioning with a shell script. 
+  #Basic SetUp
    config.vm.provision "shell", inline: <<-SHELL
-  #   sudo apt-get update
-  #   sudo apt-get install -y apache2
       echo "Instaling basic setup"
       yum install epel-release -y > /dev/null
       rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm > /dev/null
@@ -80,6 +76,11 @@ Vagrant.configure(2) do |config|
       service nginx restart
       echo "You just installed Puppet, Ngnix, haproxy, php-fpm and MySQL"
    SHELL
+
+#Shell single line
+#config.vm.provision "shell", inline: "echo Hello"
+
   #Puppet provisioning
   #config.vm.provision "puppet" 
+
 end
