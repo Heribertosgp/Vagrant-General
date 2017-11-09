@@ -2,6 +2,12 @@
 <p>Vagrant File for General porpouses. It can be used as example for small servers and webapp DevOs.</p>
 <h2>INTRODUCTION:</h2>
 <p>The file is based on CentOS7 because I believe is more reliable than Ubuntu. I like the Debian family but the virtualization and the servers are more stronger in RedHat family.</p>
+<h2>Installation</h2>
+<p>From CLI run this command:</p>
+<code>$git clone https://github.com/Heribertosgp/Vagrant-General</code>
+<code>$cd Vagrant-General</code>
+<code>$vagrant up</code>
+<p>Now you are up and running</p>
 <h3>VAGRANTFILE CONFIGURATION:</h3>
 <p>In order to use HAproxy and NGINX I will use a multiple-Machine configuration to distribute the traffic among several machines.</p>
 <h3>SERVICES:</h3>
