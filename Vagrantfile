@@ -68,6 +68,7 @@ Vagrant.configure(2) do |config|
       yum install php -y > /dev/null
       yum install curl -y > /dev/null
       yum install php-fpm -y > /dev/null
+      yum install ntp -y > /dev/null
       echo "Installing DB"     
       yum install debconf-utils -y > /dev/null
       yum install mysql -y > /dev/null
