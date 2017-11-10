@@ -12,6 +12,7 @@ Vagrant.configure(2) do |config|
   #Config/Master node 
   config.vm.define "master", primary: true do |master|
     master.vm.network "forwarded_port", guest: 80, host: 8080, host_ip:"127.0.0.1", auto_correct: true 
+    master.vm.provision "shell", inline: "echo Configure_master"
     master.vm.provision "shell", inline: "yum install salt-master -y > /dev/null" 
     master.vm.provision "shell", inline: "yum install haproxy -y > /dev/null"
     #cp1
@@ -73,7 +74,9 @@ Vagrant.configure(2) do |config|
       yum install debconf-utils -y > /dev/null
       yum install mysql -y > /dev/null
       yum update -y > /dev/null
-      echo "Restarting Puppet and Nginx"
+      echo "Restarting services"
+      ntpd
+      service ntpd restart
       service puppet restart
       service nginx restart
       echo "You just installed Puppet, Ngnix, haproxy, php-fpm and MySQL"
