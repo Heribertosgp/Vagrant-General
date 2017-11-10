@@ -12,7 +12,13 @@ Vagrant.configure(2) do |config|
   #Config/Master node 
   config.vm.define "master", primary: true do |master|
     master.vm.network "forwarded_port", guest: 80, host: 8080, host_ip:"127.0.0.1", auto_correct: true 
-    #master.vm.provision "shell", inline: "echo Hello"
+    master.vm.provision "shell", inline: "yum install salt-master -y > /dev/null" 
+    master.vm.provision "shell", inline: "yum install haproxy -y > /dev/null"
+    #cp1
+    #cp2
+    master.vm.provision "shell", inline: "service salt-master start"
+    master.vm.provision "shell", inline: "chkconfig salt-master on"
+    #master.vm.provision "shell", inline: "echo Hello" 
   end
   
 #Secundary nodes
@@ -51,7 +57,7 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. 
   #Basic SetUp
    config.vm.provision "shell", inline: <<-SHELL
-      echo "Instaling basic setup"
+      echo "Installing basic setup"
       yum install epel-release -y > /dev/null
       rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm > /dev/null
       yum update -y > /dev/null
@@ -59,7 +65,6 @@ Vagrant.configure(2) do |config|
       yum install nano -y > /dev/null
       yum install puppet -y > /dev/null
       yum install nginx -y > /dev/null
-      yum install haproxy -y > /dev/null
       yum install php -y > /dev/null
       yum install curl -y > /dev/null
       yum install php-fpm -y > /dev/null
