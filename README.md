@@ -23,10 +23,13 @@ Some details on the configuration of the services:
 <h3>Bibliography:</h3>
 <p>"Pro Vagrant" by Włodzimierz Gajda, apress 2015.</p>
 <p>Salt Cookbook by Anirban Saha Published by Packt Publishing, 2015.</p>
+<p>Network Security with OpenSSL by Pravir Chandra; Matt Messier; John Viega Published by O'Reilly Media, Inc., 2002 </p>
 <h3>Infography:</h3>
 <p><a href="https://www.vagrantup.com/docs/">Vagrant documentation</a></p>
 <p><a href="https://puppet.com/docs/puppet/5.3/index.html">Puppet documentation</a></p>
 <p><a href="http://cbonte.github.io/haproxy-dconv/1.5/configuration.html">HAproxy documentation</a></p>
+
+
 
 
 
