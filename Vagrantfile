@@ -74,7 +74,7 @@ end
   # Sync folders, "Host ../folder_name", "/Guest_folder_name" -Options
    config.vm.synced_folder "../salt", "/etc/salt/minion", create: true, group: "root", owner: "root"
    config.vm.synced_folder "./", "/srv/salt", id: "vagrant-root"
-   config.vm.synced_folder "./", "/var/www", create: true, group: "www-data", owner: "www-data"
+   config.vm.synced_folder "./", "/var/www", create: true, group: "vagrant", owner: "vagrant"
 
 # Provider specific configuration so you can fine-tune various
 # backing providers for Vagrant. These expose provider-specific options.
