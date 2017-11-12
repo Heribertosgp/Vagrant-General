@@ -18,8 +18,12 @@ Vagrant.configure(2) do |config|
     master.vm.provision "shell", inline: "yum install haproxy -y > /dev/null"
     #cp1
     #cp2
+    #ln
     master.vm.provision "shell", inline: "service salt-master start"
     master.vm.provision "shell", inline: "chkconfig salt-master on"
+    master.vm.provision "shell", inline: "salt-key -l accepted"
+    master.vm.provision "shell", inline: "salt 'salt-minion' state.highstate \ saltenv=development"
+    master.vm.provision "shell", inline: "salt-key -y -A"
     #master.vm.provision "shell", inline: "echo Hello" 
   end
  
@@ -31,6 +35,7 @@ Vagrant.configure(2) do |config|
     master2.vm.provision "shell", inline: "yum install haproxy -y > /dev/null"
     #cp1
     #cp2
+    #ln
     master2.vm.provision "shell", inline: "service salt-master start"
     master2.vm.provision "shell", inline: "chkconfig salt-master on"
     #master.vm.provision "shell", inline: "echo Hello" 
