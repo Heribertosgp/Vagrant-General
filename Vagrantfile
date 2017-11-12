@@ -15,14 +15,13 @@ Vagrant.configure(2) do |config|
     master.vm.provision "shell", inline: "echo Configure_master"
     master.vm.provision "shell", inline: "yum install salt-master -y > /dev/null" 
     master.vm.provision "shell", inline: "yum install haproxy -y > /dev/null"
-    #cp1
-    #cp2
-    #ln
+    master.vm.provision "shell", inline: "cp -s /vagrant/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg> /dev/null "
+    master.vm.provision "shell", inline: "cp -s /vagrant/ngnix/ngnix.conf /etc/ngnix/ngnix.conf"
     master.vm.provision "shell", inline: "service salt-master start"
     master.vm.provision "shell", inline: "chkconfig salt-master on"
-    master.vm.provision "shell", inline: "salt-key -l accepted"
-    master.vm.provision "shell", inline: "salt 'salt-minion' state.highstate \ saltenv=development"
-    master.vm.provision "shell", inline: "salt-key -y -A"
+    master.vm.provision "shell", inline: "salt-key -l accepted > /dev/null"
+    master.vm.provision "shell", inline: "salt 'salt-minion' state.highstate \ saltenv=development > /dev/null"
+    master.vm.provision "shell", inline: "salt-key -y -A > /dev/null"
     #master.vm.provision "shell", inline: "echo Hello" 
   end
  #Second master for redundacy and failover
@@ -45,6 +44,8 @@ Vagrant.configure(2) do |config|
     node1.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node1.vm.provision "shell", inline: "service salt-minion start"
     node1.vm.provision "shell", inline: "chkconfig salt-minion on"
+    node1.vm.provision "shell", inline: "cp -s /vagrant/ngnix/ngnix.conf /etc/ngnix/ngnix.conf"
+    node1.vm.provision "shell", inline: "cp -s /vagrant/ngnix/html/index.html /usr/share/nginx/html/index.html"
     #node1.vm.provision "shell", inline: "echo Hello"
   end
   
@@ -53,6 +54,8 @@ Vagrant.configure(2) do |config|
     node2.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node2.vm.provision "shell", inline: "service salt-minion start"
     node2.vm.provision "shell", inline: "chkconfig salt-minion on"
+    node2.vm.provision "shell", inline: "cp -s /vagrant/ngnix/ngnix.conf /etc/ngnix/ngnix.conf"
+    node2.vm.provision "shell", inline: "cp -s /vagrant/ngnix/html/index.html /usr/share/nginx/html/index.html"
   end
   
   #If more nodes needed start it with $vagrant up <name>
@@ -61,6 +64,8 @@ Vagrant.configure(2) do |config|
     node3.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node3.vm.provision "shell", inline: "service salt-minion start"
     node3.vm.provision "shell", inline: "chkconfig salt-minion on"
+    node3.vm.provision "shell", inline: "cp -s /vagrant/ngnix/ngnix.conf /etc/ngnix/ngnix.conf"
+    node3.vm.provision "shell", inline: "cp -s /vagrant/ngnix/html/index.html /usr/share/nginx/html/index.html"
   end
   
   config.vm.define "node4", autostart: false do |node4|
@@ -68,6 +73,8 @@ Vagrant.configure(2) do |config|
     node4.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node4.vm.provision "shell", inline: "service salt-minion start"
     node4.vm.provision "shell", inline: "chkconfig salt-minion on"
+    node4.vm.provision "shell", inline: "cp -s /vagrant/ngnix/ngnix.conf /etc/ngnix/ngnix.conf"
+    node4.vm.provision "shell", inline: "cp -s /vagrant/ngnix/html/index.html /usr/share/nginx/html/index.html"
 end
 
   
