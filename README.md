@@ -11,13 +11,20 @@ $cd Vagrant-General
 $vagrant up
 </code>
 </pre>
-<p>Now you are up and running</p>
+<p>Now you are up and running!</p>
+<p>If you only want to run one machine, you can especify it in the "Vagrant up" command:</p>
+<pre>
+<code>
+$vagrant up master/node1/node2
+</code>
+</pre>
 <h3>VAGRANTFILE CONFIGURATION:</h3>
 <p>In order to use HAproxy and NGINX I will use a multiple-Machine configuration to distribute the traffic among several machines.</p>
+<p> The config file of HAProxy is located on <code>/etc/haproxy/haproxy.cfg</code>
 <h3>SERVICES:</h3>
 <p>To install the services I use a inline SHELL provisioning to keep the things as simple as posible. With YUM repositorie and restarting two services: "Puppet and NGNIX".
-To configure the services I used Puppet. (Or I will, it's not done yet)
-The services installed are HAProxy, NGINX, PHP-FPM, REDIS (not yet), MYSQL.
+To configure the services is possible to use Puppet or Salt, in the file services.pp for puppet and master for salt.
+The services installed are HAProxy, NGINX, PHP-FPM, REDIS, MYSQL.
 Some details on the configuration of the services:
 </p>
 <h3>Bibliography:</h3>
