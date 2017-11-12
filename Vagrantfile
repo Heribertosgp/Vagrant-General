@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
   
 #Secundary nodes or minions
   config.vm.define "node1" do |node1|
-    node1.vm.network "forwarded_port", guest: 802, host: 80, host_ip:"127.0.0.3", auto_correct: true
+    node1.vm.network "forwarded_port", guest: 1025, host: 80, host_ip:"127.0.0.3", auto_correct: true
     node1.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node1.vm.provision "shell", inline: "service salt-minion start"
     node1.vm.provision "shell", inline: "chkconfig salt-minion on"
@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
   end
   
   config.vm.define "node2" do |node2|
-    node2.vm.network "forwarded_port", guest: 803, host: 80, host_ip:"127.0.0.4", auto_correct: true  
+    node2.vm.network "forwarded_port", guest: 1026, host: 80, host_ip:"127.0.0.4", auto_correct: true  
     node2.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node2.vm.provision "shell", inline: "service salt-minion start"
     node2.vm.provision "shell", inline: "chkconfig salt-minion on"
@@ -57,14 +57,14 @@ Vagrant.configure(2) do |config|
   
   #If more nodes needed start it with $vagrant up <name>
   config.vm.define "node3", autostart: false do |node3|
-    node3.vm.network "forwarded_port", guest: 804, host: 80, host_ip:"127.0.0.5", auto_correct: true
+    node3.vm.network "forwarded_port", guest: 1027, host: 80, host_ip:"127.0.0.5", auto_correct: true
     node3.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node3.vm.provision "shell", inline: "service salt-minion start"
     node3.vm.provision "shell", inline: "chkconfig salt-minion on"
   end
   
   config.vm.define "node4", autostart: false do |node4|
-    node4.vm.network "forwarded_port", guest: 805, host: 80, host_ip:"127.0.0.6", auto_correct: true  
+    node4.vm.network "forwarded_port", guest: 1028, host: 80, host_ip:"127.0.0.6", auto_correct: true  
     node4.vm.provision "shell", inline: "yum install salt-minion -y >/dev/null"
     node4.vm.provision "shell", inline: "service salt-minion start"
     node4.vm.provision "shell", inline: "chkconfig salt-minion on"
