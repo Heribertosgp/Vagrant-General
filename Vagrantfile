@@ -72,9 +72,10 @@ end
 
   
   # Sync folders, "Host ../folder_name", "/Guest_folder_name" -Options
-   config.vm.synced_folder "../salt", "/etc/salt/minion", create: true, group: "root", owner: "root"
-   config.vm.synced_folder "./", "/srv/salt", id: "vagrant-root"
-   config.vm.synced_folder "./", "/var/www", create: true, group: "vagrant", owner: "vagrant"
+  #There are a lot of issues on syncing files, the default option Gruste/path/vagrant-folder > guest_machine:/vagrant
+  #config.vm.synced_folder "../salt", "/etc/salt/minion", create: true, group: "root", owner: "root"
+  #config.vm.synced_folder "./", "/srv/salt", id: "vagrant-root"
+  #config.vm.synced_folder "./", "/var/www", create: true, group: "vagrant", owner: "vagrant"
 
 # Provider specific configuration so you can fine-tune various
 # backing providers for Vagrant. These expose provider-specific options.
