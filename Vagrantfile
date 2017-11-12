@@ -113,12 +113,15 @@ end
       yum install curl -y > /dev/null
       yum install php-fpm -y > /dev/null
       yum install ntp -y > /dev/null
+      #Install certbot from let's encrypt
+      yum install certbot-nginx -y >/dev/null
       echo "Installing DB"     
       yum install debconf-utils -y > /dev/null
       yum install mysql -y > /dev/null
       yum update -y > /dev/null
       echo "Restarting services"
       ntpd
+      certbot --nginx
       service ntpd restart
       service puppet restart
       service nginx restart
