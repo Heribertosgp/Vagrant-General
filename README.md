@@ -29,6 +29,7 @@ Some details on the configuration of the services:
 <p><a href="https://www.vagrantup.com/docs/">Vagrant documentation</a></p>
 <p><a href="https://puppet.com/docs/puppet/5.3/index.html">Puppet documentation</a></p>
 <p><a href="http://cbonte.github.io/haproxy-dconv/1.5/configuration.html">HAproxy documentation</a></p>
+<p><a href="https://docs.saltstack.com/en/latest/ref/configuration/master.html">Salt configuration master</a></p>
 
 
 
