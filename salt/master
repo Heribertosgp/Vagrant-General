@@ -15,3 +15,24 @@ salt-master:
       - pkg: salt-minion
     - watch:
 - file: salt-minion
+
+{% if '/vagrant/nginx/html' in salt['mount.active']() %}
+/usr/share/nginx/html:
+  file:
+    - symlink
+    - target: /vagrant/nginx/html/index.html
+{% endif %}
+
+{% if '/vagrant/ngnix/conf' in salt['mount.active']() %}
+/etc/ngnix/sites-available/nginx_conf:
+  file:
+    - symlink
+    - target: /vagrant/nginx/config/ngnix_conf
+{% endif %}
+
+{% if '/vagrant/ngnix/conf' in salt['mount.active']() %}
+/etc/ngnix/ngnix.conf:
+  file:
+    - symlink
+    - target: /vagrant/nginx/nginx.conf
+{% endif %}
