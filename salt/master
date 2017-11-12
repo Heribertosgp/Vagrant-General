@@ -12,7 +12,7 @@
 #default_include: master.d/*.conf
 
 # The address of the interface to bind to:
-#interface: 0.0.0.0
+interface: 127.0.0.1
 
 # Whether the master should listen for IPv6 connections. If this is set to True,
 # the interface option must be adjusted, too. (For example: "interface: '::'")
@@ -63,6 +63,28 @@
 # sock_dir, log_file, autosign_file, autoreject_file, extension_modules,
 # key_logfile, pidfile:
 #root_dir: /
+
+#File roots
+file_roots:  
+  base:    
+    - /opt/salt/base  
+  production:    
+    - /opt/salt/production  
+  staging:    
+    - /opt/salt/staging  
+  development:    
+    - /opt/salt/development
+#Pillar roots
+pillar_roots:  
+  base:    
+    - /opt/salt/pillar/base  
+  production:    
+    - /opt/salt/pillar/production  
+  staging:    
+    - /opt/salt/pillar/staging  
+  development:    
+    - /opt/salt/pillar/development
+
 
 # Directory used to store public key data:
 #pki_dir: /etc/salt/pki/master
@@ -123,17 +145,17 @@
 # a burden on the master for larger deployments (over 5000 minions).
 # Disabling the job cache will make previously executed jobs unavailable to
 # the jobs system and is not generally recommended.
-#job_cache: True
+job_cache: True
 
 # Cache minion grains and pillar data in the cachedir.
-#minion_data_cache: True
+minion_data_cache: True
 
 # Store all returns in the given returner.
 # Setting this option requires that any returner-specific configuration also 
 # be set. See various returners in salt/returners for details on required
 # configuration values. (See also, event_return_queue below.)
 #
-#event_return: mysql
+event_return: mysql
 
 # On busy systems, enabling event_returns can cause a considerable load on
 # the storage system for returners. Events can be queued on the master and
@@ -154,7 +176,7 @@
 # Passing very large events can cause the minion to consume large amounts of
 # memory. This value tunes the maximum size of a message allowed onto the
 # master event bus. The value is expressed in bytes.
-#max_event_size: 1048576
+max_event_size: 1048576
 
 # By default, the master AES key rotates every 24 hours. The next command
 # following a key rotation will trigger a key refresh from the minion which may
