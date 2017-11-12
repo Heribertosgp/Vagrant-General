@@ -1,0 +1,4 @@
+grains:  
+  environment: development  
+  location: datacenter1  
+  server_type: webserver
