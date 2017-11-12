@@ -27,6 +27,20 @@ To configure the services is possible to use Puppet or Salt, in the file service
 The services installed are HAProxy, NGINX, PHP-FPM, REDIS, MYSQL.
 Some details on the configuration of the services:
 </p>
+<p>The configuration file of each service can be modified or resyncronize with other file from Git project.
+  For Salt you can use this sintax:
+  </p>
+  <pre>
+  <code>
+  {% if '/vagrant/nginx/html' in salt['mount.active']() %}
+/usr/share/nginx/html:
+  file:
+    - symlink
+    - target: /vagrant/nginx/html/index.html
+{% endif %}
+  </code>
+  </pre>
+<p></p>
 <h3>Bibliography:</h3>
 <p>"Pro Vagrant" by Włodzimierz Gajda, apress 2015.</p>
 <p>Salt Cookbook by Anirban Saha Published by Packt Publishing, 2015.</p>
@@ -35,6 +49,7 @@ Some details on the configuration of the services:
 <h3>Infography:</h3>
 <p><a href="https://www.vagrantup.com/docs/">Vagrant documentation</a></p>
 <p><a href="https://puppet.com/docs/puppet/5.3/index.html">Puppet documentation</a></p>
+<p><a href="http://docs.saltstack.com/topics/tutorials/walkthrough.html">Saltstak wolkthrough</a></p>
 <p><a href="http://cbonte.github.io/haproxy-dconv/1.5/configuration.html">HAproxy documentation</a></p>
 <p><a href="https://docs.saltstack.com/en/latest/ref/configuration/master.html">Salt configuration master</a></p>
 
